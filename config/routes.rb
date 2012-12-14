@@ -1,4 +1,6 @@
 SmokeSignal::Application.routes.draw do
+  resource :event
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
