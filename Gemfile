@@ -22,6 +22,7 @@ end
 
 gem 'jquery-rails'
 
+gem 'activeadmin', :git => "git@github.com:rarolabs/active_admin.git"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
