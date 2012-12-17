@@ -1,5 +1,6 @@
 class Alert < ActiveRecord::Base
    attr_accessible :operator, :limit, :mail_list, :alert_type_id
+
    belongs_to :alert_type
    
    def was_alert?(valor)
