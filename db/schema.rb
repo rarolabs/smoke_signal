@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121214204244) do
+ActiveRecord::Schema.define(:version => 20121217180903) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -49,19 +49,21 @@ ActiveRecord::Schema.define(:version => 20121214204244) do
   create_table "alert_types", :force => true do |t|
     t.string   "key"
     t.string   "title"
-    t.string   "describe"
+    t.string   "description"
     t.integer  "system_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "alerts", :force => true do |t|
     t.string   "operator"
     t.integer  "limit"
-    t.string   "list_mail"
+    t.string   "mail_list"
     t.integer  "alert_type_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.string   "owner"
+    t.boolean  "active"
   end
 
   create_table "delayed_jobs", :force => true do |t|

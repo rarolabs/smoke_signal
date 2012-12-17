@@ -1,6 +1,5 @@
 class Alert < ActiveRecord::Base
-   attr_accessible :operator, :limit, :list_mail, :alert_type_id, :created_at, :id, :updated_at
-   
+   attr_accessible :operator, :limit, :mail_list, :alert_type_id
 
    belongs_to :alert_type
    
@@ -19,6 +18,15 @@ class Alert < ActiveRecord::Base
    end
    
    def enviar_alarme
-     puts "Enviando email do alarme #{self.alert_type.describe}"
+     puts "Sending email alarm - #{self.alert_type.description}"
    end
+   
+   def check!(v)
+     if self.houve_alarme?(v)
+       self.enviar_alarme
+     else
+       puts "No alert"  
+     end  
+   end
+   
 end
