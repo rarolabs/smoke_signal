@@ -23,7 +23,7 @@ end
 gem 'jquery-rails'
 gem 'activeadmin', :git => "git@github.com:rarolabs/active_admin.git"
 gem 'resque'
-gem 'delayed_job_active_record'
+gem 'smoke_signal_client', :git => 'git@github.com:rodrigosol/smoke_signal_client.git'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

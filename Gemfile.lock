@@ -15,6 +15,13 @@ GIT
       rails (>= 3.0.0)
       sass (>= 3.1.0)
 
+GIT
+  remote: git@github.com:rodrigosol/smoke_signal_client.git
+  revision: dca15157f6f9af9a0d4ee76ec9e135c94bdac7ad
+  specs:
+    smoke_signal_client (0.0.1)
+      rails (~> 3.2.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -171,10 +178,10 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   coffee-rails (~> 3.2.1)
-  delayed_job_active_record
   jquery-rails
   mysql2
   rails (= 3.2.8)
   resque
   sass-rails (~> 3.2.3)
+  smoke_signal_client!
   uglifier (>= 1.0.3)
