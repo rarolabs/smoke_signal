@@ -18,23 +18,22 @@ module SmokeSignal
     def ss_parse(attrs)
       keys = attrs[1]
       constraints = attrs[0]
-      puts "keys #{keys.inspect}"
-      puts "constraints #{constraints.inspect}"
-            
+      # puts "keys #{keys.inspect}"
+      # puts "constraints #{constraints.inspect}"
 
       event = {
-        :system => "TESTE",
+        :system => "Smoke",
         :constraints => {},
         :keys => {} 
       }
       
       constraints.each do |c|
-        puts "send #{send(c)}"
+        # puts "send #{send(c)}"
         event[:constraints][c] = send(c)
       end
       
       keys.each_key do |k|
-        puts "k: #{k}"
+        # puts "k: #{k}"
         event[:keys][k] = send(keys[k])
       end
       
@@ -50,11 +49,11 @@ module SmokeSignal
         @smoke_signal_keys = {}
         @smoke_signal_constraints = constraints
         yield(block)
-        instance_variable_set(:@foo,'rodrigo')
+        # instance_variable_set(:@foo,'rodrigo')
       end
     
       def set(value,key)
-        puts "set #{value} : #{key}"
+        # puts "set #{value} : #{key}"
         @smoke_signal_keys[key] = value
       end
       
@@ -78,10 +77,9 @@ class Event < ActiveRecord::Base
   attr_accessible :data_type, :key, :system, :valor
   
   alarm [:key] do
-     set :data_type, :DEMANDA_ATIVA
-     set :key , :DEMANDA_REATIVA
-   end
-  
+     set :data_type , :AT1
+     set :valor, :AN1
+  end
 
 end
 
