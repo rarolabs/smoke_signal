@@ -6,7 +6,7 @@ SmokeSignal::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   resource :event
-  resources :alarms
+  resources :alerts
   
   
   mount Resque::Server => "/internal/resque"

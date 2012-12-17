@@ -1,5 +1,7 @@
 class Alert < ActiveRecord::Base
-   attr_accessible :operator, :limit, :list_mail, :alert_type_id
+   attr_accessible :operator, :limit, :list_mail, :alert_type_id, :created_at, :id, :updated_at
+   
+
    belongs_to :alert_type
    
    def houve_alarme?(valor)
