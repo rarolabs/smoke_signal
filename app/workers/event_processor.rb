@@ -8,10 +8,12 @@ class EventProcessor
     if @system.present?
       @keys.each do |k,v|
         alert_type = AlertType.where("system_id = ? and alert_types.key = ?",@system.id,k).first
-        if alert_type.present?
+        if alert_type.present? and alert_type.obeys_constraint?(@constraints)
           alert_type.alerts.each do |alert|
             alert.check!(v)
           end
+        elsif alert_type.present?
+          puts "not obey constraints"
         end
       end
     end

@@ -2,7 +2,7 @@ class Alert < ActiveRecord::Base
    attr_accessible :operator, :limit, :mail_list, :alert_type_id
    belongs_to :alert_type
    
-   def houve_alarme?(valor)
+   def was_alert?(valor)
     if self.operator == "igual"
       return valor == self.limit
     elsif self.operator == "maior"
@@ -16,13 +16,13 @@ class Alert < ActiveRecord::Base
     end
    end
    
-   def enviar_alarme
+   def send_alert
      puts "Sending email alarm - #{self.alert_type.description}"
    end
    
    def check!(v)
-     if self.houve_alarme?(v)
-       self.enviar_alarme
+     if self.was_alert?(v)
+       self.send_alert
      else
        puts "No alert"  
      end  
