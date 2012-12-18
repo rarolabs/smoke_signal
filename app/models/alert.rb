@@ -3,6 +3,9 @@ class Alert < ActiveRecord::Base
 
    belongs_to :alert_type
    
+   validates_presence_of :operator, :limit, :mail_list
+   validates_associated :alert_type
+   
    def was_alert?(value)
     if self.operator == "igual"
       return value == self.limit

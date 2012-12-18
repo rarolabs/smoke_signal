@@ -5,6 +5,10 @@ class AlertType < ActiveRecord::Base
    has_many :templates
    belongs_to :system
    
+   validates_presence_of :title, :description, :key
+   validates_uniqueness_of :system_id, :scope => :key
+   validates_associated :system
+   
    def obeys_constraint?(c)
      self.constraints.each do |constraint|
        return false unless (c[constraint.field_name].present? and c[constraint.field_name] == constraint.value) 
