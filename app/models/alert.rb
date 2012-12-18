@@ -1,7 +1,7 @@
 class Alert < ActiveRecord::Base
-   attr_accessible :operator, :limit, :mail_list, :alert_type_id
-
+   attr_accessible :operator, :limit, :mail_list, :alert_type_id, :active, :owner_id, :owner
    belongs_to :alert_type
+   belongs_to :owner
    
    def houve_alarme?(valor)
     if self.operator == "igual"
