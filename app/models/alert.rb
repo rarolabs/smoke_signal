@@ -23,28 +23,22 @@ class Alert < ActiveRecord::Base
    def send_alert(value)
      puts "No template" unless self.alert_type.alert_templates.present?
      self.alert_type.alert_templates.each do |template|
-       puts "Sending #{template[:message_type]} alarm - #{self.alert_type.key}"
        notification = template[:text].gsub("##operator", "#{operator}").gsub("##limit", "#{limit}").gsub("##value", "#{value}").gsub("##rule", "Value #{operator} #{limit}")
-       puts "****************TEMPLATE**************"
-       puts "#{notification}"
-       puts "**************************************"
+       class_name = (template[:message_type].titleize + "Dispatch").constantize
+       class_name.new(self.mail_list, self.alert_type.title, notification)
      end
    end
    
    def check!(value)
-     if self.is_active? and self.was_alert?(value)
+     if self.active and self.was_alert?(value)
        self.send_alert(value)
      else
-       if self.is_active?
+       if self.active
          puts "No alert"
        else
          puts "No active"
        end  
      end  
-   end
-   
-   def is_active?
-      self.active
    end
    
 end
