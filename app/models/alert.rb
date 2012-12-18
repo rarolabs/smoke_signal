@@ -3,27 +3,31 @@ class Alert < ActiveRecord::Base
 
    belongs_to :alert_type
    
-   def was_alert?(valor)
+   def was_alert?(value)
     if self.operator == "igual"
-      return valor == self.limit
+      return value == self.limit
     elsif self.operator == "maior"
-      return valor > self.limit
+      return value > self.limit
     elsif self.operator == "menor"
-      return valor < self.limit
+      return value < self.limit
     elsif self.operator == "maior ou igual"
-      return valor >= self.limit
+      return value >= self.limit
     elsif self.operator == "menor ou igual"
-      return valor <= self.limit
+      return value <= self.limit
     end
    end
    
-   def send_alert
+   def send_alert(value)
      puts "Sending email alarm - #{self.alert_type.description}"
+     self.alert_type.alert_templates.each do |template|
+       notification = template.gsub("##operator", "#{operator}").gsub("##limit", "#{limit}").gsub("##value", "#{value}")
+       puts "****************TEMPLATE**********#{notification}"
+     end
    end
    
-   def check!(v)
-     if self.was_alert?(v)
-       self.send_alert
+   def check!(value)
+     if self.was_alert?(value)
+       self.send_alert(value)
      else
        puts "No alert"  
      end  

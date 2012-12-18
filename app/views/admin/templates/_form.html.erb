@@ -1,0 +1,17 @@
+<%= semantic_form_for [:admin,@template] do |f| %>
+	<%= f.inputs "Novo Template" do %>
+		<%=f.input :alert_type, :member_label => :title  %>
+		<li class="select input optional">
+			<label class="label" for="type">Type</label>
+			<select id="template_message_type" name="template[message_type]">
+				<option value="MAIL">MAIL</option>
+				<option value="SMS">SMS</option>
+			</select>	
+		</li>
+  		<%=f.input :text  %>
+	<% end %>
+	<%= f.actions do %>
+	  <%= f.action :submit, :button_html => { :class => "primary action input_action" } %>
+	  <%= f.action :cancel, :as => :link, :url => admin_templates_path, :wrapper_html => { :class => "primary cancel" } %>
+	<% end %>
+<% end %>
