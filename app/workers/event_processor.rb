@@ -14,6 +14,8 @@ class EventProcessor
           end
         elsif alert_type.present?
           puts "not obey constraints"
+        else
+          puts "no warnings"
         end
       end
     end

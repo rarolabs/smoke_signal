@@ -1,0 +1,23 @@
+<%= semantic_form_for [:admin,@alert] do |f| %>
+	<%= f.inputs "New Alert" do %>
+		<%=f.input :alert_type, :member_label => :title  %>
+		<li class="select input optional">
+			<label class="label" for="operator">Operator</label>
+			<select id="alert_operator" name="alert[operator]">
+				<option value="igual">=</option>
+				<option value="maior">></option>
+				<option value="menor"><</option>
+				<option value="maior ou igual"><=</option>
+				<option value="menor ou igual">>=</option>
+			</select>	
+		</li>
+  		<%=f.input :limit  %>
+		<%=f.input :mail_list  %>
+		<%=f.input :owner  %>
+		<%=f.input :active, :input_html => {:checked => true}  %>
+	<% end %>
+	<%= f.actions do %>
+	  <%= f.action :submit, :button_html => { :class => "primary action input_action" } %>
+	  <%= f.action :cancel, :as => :link, :url => admin_alerts_path, :wrapper_html => { :class => "primary cancel" } %>
+	<% end %>
+<% end %>

@@ -7,6 +7,7 @@ class AlertType < ActiveRecord::Base
    
    validates_presence_of :title, :description, :key
    validates_uniqueness_of :system_id, :scope => :key
+   # validates_uniqueness_of :key (Somente quanto o sistema é igual)
    validates_associated :system
    
    def obeys_constraint?(c)
@@ -19,7 +20,7 @@ class AlertType < ActiveRecord::Base
    def alert_templates
      temp = []
      self.templates.each do |template|
-        temp << template.text.gsub("##system", "#{system.name}").gsub("##description", "#{description}").gsub("##title", "#{title}")
+        temp << {:message_type => template.message_type, :text => template.text.gsub("##system", "#{system.name}").gsub("##description", "#{description}").gsub("##title", "#{title}").gsub("##key", "#{key}") }
      end
      return temp
    end

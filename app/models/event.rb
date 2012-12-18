@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
   attr_accessible :data_type, :key, :system, :valor
   
   alarm [:key,:data_type] do
-     set :valor, :AN1
+     set :valor, :DAFP
   end
 end
 
