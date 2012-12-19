@@ -7,6 +7,7 @@ SmokeSignal::Application.routes.draw do
   
   resource :event
   resources :alerts
+  resources :owners
   
   
   mount Resque::Server => "/internal/resque"

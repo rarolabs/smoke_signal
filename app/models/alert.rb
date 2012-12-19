@@ -1,7 +1,9 @@
 class Alert < ActiveRecord::Base
+
    attr_accessible :operator, :limit, :mail_list, :owner, :active, :alert_type_id
 
    belongs_to :alert_type
+
    
    validates_presence_of :operator, :limit, :mail_list, :owner
    validates_associated :alert_type

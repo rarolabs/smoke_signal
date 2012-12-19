@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(:version => 20121217195704) do
     t.integer  "alert_type_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.string   "owner"
     t.boolean  "active"
+    t.string   "owner"
   end
 
   create_table "constraints", :force => true do |t|
