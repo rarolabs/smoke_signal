@@ -14,34 +14,31 @@ class AlertsController < ApplicationController
 
   respond_to :xml, :json
   def index
-    respond_with(@alerts = Alert.all) #(:alert_type => [:system]).where("systems.token = ?", @system))
+    unless params[:key].present?
+       @alerts = Alert.joins(:alert_type).where(:owner => params[:owner])
+     else
+       @alerts = Alert.joins(:alert_type).where("owner = ? and alert_types.key = ? ", params[:owner],params[:key])
+     end
+    respond_with(@alerts)
   end
   
   def create
-    params[:alert][:owner] = @owner
     @alert = Alert.create(params[:alert])
-    respond_with(@alert, :location => alerts_url)
+    respond_with(@alert)
   end
   
   def update 
     @alert = Alert.find(params[:id])
-    if @alert.owner == @owner
-      params[:alert].delete(:created_at)
-      params[:alert].delete(:id)
-      params[:alert].delete(:updated_at)
-            
-      @alert.update_attributes(params[:alert])
-      respond_with(@alert, :location => alerts_url)
-    end
+    @alert.update_attributes(params[:alert])
+    @alert.update_attributes(params[:alert])
+    respond_with(@alert, :location => alerts_url)
   end
 
 
   def destroy 
     @alert = Alert.find(params[:id])
-    if @alert.owner == @owner
-      @alert.destroy
-      respond_with(@alert, :location => alerts_url)
-    end
+    @alert.destroy
+    respond_with(@alert, :location => alerts_url)
   end
 
 
