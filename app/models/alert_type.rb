@@ -7,7 +7,6 @@ class AlertType < ActiveRecord::Base
    
    validates_presence_of :title, :description, :key
    validates_uniqueness_of :system_id, :scope => :key
-   # validates_uniqueness_of :key (Somente quanto o sistema é igual)
    validates_associated :system
    
    def obeys_constraint?(c)
