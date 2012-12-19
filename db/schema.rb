@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121217180903) do
+ActiveRecord::Schema.define(:version => 20121217184231) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -64,6 +64,14 @@ ActiveRecord::Schema.define(:version => 20121217180903) do
     t.datetime "updated_at",    :null => false
     t.boolean  "active"
     t.string   "owner"
+  end
+
+  create_table "constraints", :force => true do |t|
+    t.string   "field_name"
+    t.string   "value"
+    t.integer  "alert_type_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "delayed_jobs", :force => true do |t|
